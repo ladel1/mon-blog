@@ -1,0 +1,30 @@
+name: CI pour Mon Blog
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    run-on: ubuntu-latest
+
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    
+    - name: Install les dépendances
+      run: npm install
+
+    - name: Lancer les tests
+      run: npm test
+
+    - name: lancer linter
+      run: npm run lint
+    
